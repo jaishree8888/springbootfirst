@@ -1,43 +1,48 @@
 package com.example.springboot.models;
 
-
-import lombok.Data;
-
-@Data
 public class Employee {
+    private int eid;
+    private String name;
+    private String designation;
 
-    private int empID;
-    private String Name;
-    private String Designation;
+    public Employee() {}
 
-    public Employee(int empID, String name, String designation) {
-        this.empID = empID;
-        Name = name;
-        Designation = designation;
+    public Employee(int eid, String name, String designation) {
+        this.eid = eid;
+        this.name = name;
+        this.designation = designation;
     }
 
-    public int getEmpID() {
-        return empID;
+    public int getEid() {
+        return eid;
     }
 
-    public void setEmpID(int empID) {
-        this.empID = empID;
+    public void setEid(int eid) {
+        this.eid = eid;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getDesignation() {
-        return Designation;
+        return designation;
     }
 
     public void setDesignation(String designation) {
-        Designation = designation;
+        this.designation = designation;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "eid=" + eid +
+                ", name='" + name + '\'' +
+                ", designation='" + designation + '\'' +
+                '}';
+    }
 }

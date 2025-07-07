@@ -1,6 +1,5 @@
 package com.example.springboot.controllers;
 
-
 import com.example.springboot.models.Employee;
 import com.example.springboot.services.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,33 +8,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/employee")
 public class HelloWorldController {
 
     @Autowired
     private HelloWorldService hws;
 
-    @GetMapping("/get")
-    public List<Employee> getMethod()
-    {
-        return hws.helloWorld();
+    @PostMapping
+    public String addEmployee(@RequestBody Employee e) {
+        hws.addEmployee(e);
+        return "Employee Added Successfully";
     }
 
-    @PostMapping("/post")
-    public String postMethod()
-    {
-        return hws.helloComputer();
+    @GetMapping
+    public List<Employee> getEmployees() {
+        return hws.getAllEmployees();
     }
 
-    @PutMapping("/put")
-    public String putMethod()
-    {
-        return hws.helloColleagues();
+    @GetMapping("/{eid}")
+    public Employee getEmployeeById(@PathVariable int eid) {
+        return hws.getEmployeeById(eid);
     }
 
-    @DeleteMapping("/delete")
-    public String deleteMethod()
-    {
-        return hws.helloCoimbatore();
+    @DeleteMapping("/{eid}")
+    public String deleteEmployee(@PathVariable int eid) {
+        return hws.deleteEmployeeById(eid);
     }
 
+    @PutMapping("/{eid}")
+    public String updateRecord(@RequestBody Employee employee) {
+        return hws.updateRecord(employee);
+    }
 }
